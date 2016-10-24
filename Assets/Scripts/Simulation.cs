@@ -38,6 +38,11 @@ public class Simulation : MonoBehaviour {
     {
         Me = this;
 
+        
+    }
+
+    void Start()
+    {
         Powder = possiblePowders[0];
         Cartridge = possibleCartridges[0];
         Lock = possibleLocks[0];

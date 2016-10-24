@@ -6,9 +6,29 @@ public class Simulation : MonoBehaviour {
 
     public static Simulation Me { get; private set; }
 
-	public PowderInfo Powder { get; set; }
-    public CartridgeInfo Cartridge { get; set; }
-    public LockInfo Lock { get; set; }
+    private PowderInfo _pow;
+
+    public PowderInfo Powder
+    {
+        get { return _pow; }
+        set { _pow = value; }
+    }
+
+    private CartridgeInfo _cart;
+    public CartridgeInfo Cartridge {
+        get { return _cart; }
+        set { _cart = value; }
+    }
+
+    private LockInfo _lock;
+    public LockInfo Lock {
+        get { return _lock; }
+        set
+        {
+            Pistol.Me.SetBarrelLength(value.lengthOfBarrel);
+            _lock = value; 
+        }
+    }
 
     public List<PowderInfo> possiblePowders;
     public List<CartridgeInfo> possibleCartridges;

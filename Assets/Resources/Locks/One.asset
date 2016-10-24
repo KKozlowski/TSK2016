@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: One
   m_EditorClassIdentifier: 
   title: Deadlock
-  lengthOfBarrel: 0.2
+  lengthOfBarrel: 0.12
   inclinationMax: 0.03
   elasticityOfRecoilSpring: 500

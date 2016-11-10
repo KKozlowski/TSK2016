@@ -17,7 +17,14 @@ public class Simulation : MonoBehaviour {
     private CartridgeInfo _cart;
     public CartridgeInfo Cartridge {
         get { return _cart; }
-        set { _cart = value; }
+        set
+        {
+            Pistol.Me.SetBarrelDiameter(value.diameterOfBullet * 1.05);
+            Pistol.Me.Cartridge.SetLength(value.lengthOfCasing);
+            Pistol.Me.Cartridge.SetDiameter(value.diameterOfBullet);
+            _cart = value; 
+            
+        }
     }
 
     private LockInfo _lock;

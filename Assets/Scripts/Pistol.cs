@@ -6,6 +6,7 @@ public class Pistol : MonoBehaviour {
     public static Pistol Me { get; private set; }
 
 	public float BarrelLength { get; private set; }
+    public float BarrelDiameter { get; private set; }
     public float LockInclination { get; private set; }
 
     public Transform barrelMainTransform;
@@ -17,6 +18,14 @@ public class Pistol : MonoBehaviour {
 
     public Quaternion[] barrelRotations;
     public Vector3[] barrelPositions;
+
+    public Transform barrelTop, barrelBottom, barrelBack, hinge;
+
+    public Transform strikerMainTransform, strikerZeroPosition;
+
+    [SerializeField]
+    private Cartridge _cartridge;
+    public Cartridge Cartridge { get { return _cartridge; } }
 
     public float Progress = 0;
 
@@ -34,6 +43,29 @@ public class Pistol : MonoBehaviour {
         BarrelLength = l;
         l *= Scale;
         barrelInnerTransform.localScale = new Vector3(l, barrelInnerTransform.localScale.y, barrelInnerTransform.localScale.z);
+    }
+
+    public void SetBarrelDiameter(double d)
+    {
+        SetBarrelDiameter((float)d);
+    }
+
+    public void SetBarrelDiameter(float diameter)
+    {
+        BarrelDiameter = diameter;
+        diameter *= Scale;
+        var hingePrevParent = hinge.parent;
+        hinge.parent = barrelTop;
+        barrelTop.localPosition = barrelBottom.localPosition + new Vector3(0,diameter,0);
+        hinge.parent = hingePrevParent;
+        
+
+        barrelBack.localScale = new Vector3(1, diameter+0.02f, 1);
+        barrelBack.localPosition = barrelBottom.localPosition + new Vector3(0, diameter/2, 0);
+
+        strikerMainTransform.position = strikerZeroPosition.position + new Vector3(0, diameter / 2, 0);
+
+        Cartridge.transform.localPosition = barrelBottom.localPosition +new Vector3(0, diameter / 2, 0);
     }
 
     public void SetInclination(double i)
@@ -76,6 +108,14 @@ public class Pistol : MonoBehaviour {
         
     }
 
+    public void UpdateElements()
+    {
+        float pong = Mathf.PingPong(Progress, 1);
+        slideTransform.localPosition = Vector3.Lerp(slidePositions[0], slidePositions[1], pong);
+        barrelMainTransform.localPosition = Vector3.Lerp(barrelPositions[0], barrelPositions[1], pong);
+        barrelMainTransform.localRotation = Quaternion.Lerp(barrelRotations[0], barrelRotations[1], pong);
+    }
+
     void Update()
     {
         if (PingPong)
@@ -83,10 +123,6 @@ public class Pistol : MonoBehaviour {
             Progress += Time.deltaTime * 1.5f;
         }
 
-        float pong = Mathf.PingPong(Progress, 1);
-
-        slideTransform.localPosition = Vector3.Lerp(slidePositions[0], slidePositions[1], pong);
-        barrelMainTransform.localPosition = Vector3.Lerp(barrelPositions[0], barrelPositions[1], pong);
-        barrelMainTransform.localRotation = Quaternion.Lerp(barrelRotations[0], barrelRotations[1], pong);
+        UpdateElements();
     }
 }

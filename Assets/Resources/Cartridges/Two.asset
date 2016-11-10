@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Two
   m_EditorClassIdentifier: 
   title: Pegasus
-  diameterOfBullet: 0.005
+  diameterOfBullet: 0.02
   massOfBullet: 0.1
   lengthOfCasing: 0.05

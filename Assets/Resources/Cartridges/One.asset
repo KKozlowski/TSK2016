@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: One
   m_EditorClassIdentifier: 
   title: Amiga
-  diameterOfBullet: 0.02
+  diameterOfBullet: 0.012
   massOfBullet: 0.01
-  lengthOfCasing: 0.01
-  volumeOfPowder: 0.000005
+  lengthOfCasing: 0.022

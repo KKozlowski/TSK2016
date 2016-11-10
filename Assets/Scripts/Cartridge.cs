@@ -18,6 +18,7 @@ public class Cartridge : MonoBehaviour
         casing.localScale = casingScale;
 
         Bullet.transform.localPosition = new Vector3(-l, 0,0);
+        Bullet.ZeroPosition = -l;
     }
 
     public void SetDiameter(double d) { SetDiameter((float)d);}

@@ -23,6 +23,8 @@ public class Pistol : MonoBehaviour {
 
     public Transform strikerMainTransform, strikerZeroPosition;
 
+    public Transform slideBack, slideZeroPosition, slideTopOverBarrel, slideTopOther;
+
     [SerializeField]
     private Cartridge _cartridge;
     public Cartridge Cartridge { get { return _cartridge; } }
@@ -66,6 +68,16 @@ public class Pistol : MonoBehaviour {
         strikerMainTransform.position = strikerZeroPosition.position + new Vector3(0, diameter / 2, 0);
 
         Cartridge.transform.localPosition = barrelBottom.localPosition +new Vector3(0, diameter / 2, 0);
+
+        float slideBackHeight = diameter + 0.67f;
+        Vector3 slideBackScale = slideBack.localScale;
+        slideBackScale.y = slideBackHeight;
+        slideBack.localScale = slideBackScale;
+
+        Vector3[] slidesPositions = {slideTopOverBarrel.localPosition, slideTopOther.localPosition};
+        slidesPositions[1].y = slidesPositions[0].y = slideZeroPosition.localPosition.y + slideBackHeight- 0.25f;
+        slideTopOther.localPosition = slidesPositions[1];
+        slideTopOverBarrel.localPosition = slidesPositions[0];
     }
 
     public void SetInclination(double i)

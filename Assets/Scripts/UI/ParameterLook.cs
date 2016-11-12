@@ -22,7 +22,7 @@ public class ParameterLook : MonoBehaviour
         {
             parameterTexts[0].text = "Burning time: " + pi.timeOfBurning;
             parameterTexts[1].text = "Burning temperature: " + pi.temperatureOfBuring;
-            parameterTexts[2].text = "Moles of gas produced from one kilogram: " + pi.molesOfGasFromKilogram;
+            parameterTexts[2].text = "Moles of gas produced from one kilogram: " + pi.molesPerKilo;
             return;
         }
 

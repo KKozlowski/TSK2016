@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-public class Simulation : MonoBehaviour {
-
+public class Simulation : MonoBehaviour
+{
     public static Simulation Me { get; private set; }
 
     private PowderInfo _pow;
-
     public PowderInfo Powder
     {
         get { return _pow; }
-        set { _pow = value; }
+        set
+        {
+            _pow = value;
+
+            if (wasInit)
+                calculation.Init(Cartridge, Lock, Powder, 1000);
+        }
     }
 
     private CartridgeInfo _cart;
@@ -22,8 +26,10 @@ public class Simulation : MonoBehaviour {
             Pistol.Me.SetBarrelDiameter(value.diameterOfBullet * 1.05);
             Pistol.Me.Cartridge.SetLength(value.lengthOfCasing);
             Pistol.Me.Cartridge.SetDiameter(value.diameterOfBullet);
-            _cart = value; 
-            
+            _cart = value;
+
+            if (wasInit)
+                calculation.Init(Cartridge, Lock, Powder, 1000);
         }
     }
 
@@ -33,7 +39,10 @@ public class Simulation : MonoBehaviour {
         set
         {
             Pistol.Me.SetBarrelLength(value.lengthOfBarrel);
-            _lock = value; 
+            _lock = value;
+
+            if (wasInit)
+                calculation.Init(Cartridge, Lock, Powder, 1000);
         }
     }
 
@@ -41,11 +50,12 @@ public class Simulation : MonoBehaviour {
     public List<CartridgeInfo> possibleCartridges;
     public List<LockInfo> possibleLocks;
 
+    Calculation calculation;
+    bool wasInit;
+
     void Awake()
     {
         Me = this;
-
-        
     }
 
     void Start()
@@ -53,5 +63,8 @@ public class Simulation : MonoBehaviour {
         Powder = possiblePowders[0];
         Cartridge = possibleCartridges[0];
         Lock = possibleLocks[0];
+        calculation = new Calculation();
+        calculation.Init(Cartridge, Lock, Powder, 1000);
+        wasInit = true;
     }
 }

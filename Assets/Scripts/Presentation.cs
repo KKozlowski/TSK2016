@@ -7,11 +7,11 @@ public class Presentation : MonoBehaviour
     [SerializeField] Bullet bullet;
 
     bool wasInit;
-    bool animate;
+    public bool animate;
     float animTime;
 
     // helpers
-    float progress;
+    public float progress;
     float interpolation;
     int samples, x, y;
 
@@ -19,8 +19,19 @@ public class Presentation : MonoBehaviour
     {
         if (!wasInit)
             return;
-        if (animate)
-            progress = (progress + Time.deltaTime / animTime) % 1.0f;
+
+	    animate = Ui.Me.progressBar.GetAutoAnimation();
+	    if (animate)
+	    {
+	        progress = (progress + Time.deltaTime/animTime)%1.0f;
+	        Ui.Me.progressBar.SetProgress(progress);
+	    }
+	    else
+	    {
+	        progress = Ui.Me.progressBar.GetProgress();
+	    }
+
+	    Pistol.Me.Progress = Mathf.Clamp((progress - 0.2f)/0.4f,0,2);
 
         interpolation = progress * samples;
         x = (int)interpolation;

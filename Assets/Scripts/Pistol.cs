@@ -99,13 +99,11 @@ public class Pistol : MonoBehaviour {
         barrelPositions[1] = barrelPositions[0] + new Vector3(0, -i / 14f, 0);
     }
 
+
     void Awake()
     {
-        Me = this;
-    }
 
-    void Start()
-    {
+        Me = this;
         slidePositions = new Vector3[2];
         slidePositions[0] = slideTransform.localPosition;
         slidePositions[1] = slidePositions[0];
@@ -117,6 +115,13 @@ public class Pistol : MonoBehaviour {
         barrelPositions = new Vector3[2];
         barrelPositions[0] = barrelMainTransform.localPosition;
         barrelPositions[1] = barrelPositions[0];
+    }
+
+    void Start()
+    {
+        
+
+        
 
         SetBarrelLength(0.115);
         SetInclination(0.05);

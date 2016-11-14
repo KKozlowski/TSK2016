@@ -39,6 +39,7 @@ public class Simulation : MonoBehaviour
         set
         {
             Pistol.Me.SetBarrelLength(value.lengthOfBarrel);
+            Pistol.Me.SetInclination(value.inclinationMax);
             _lock = value;
 
             if (wasInit)

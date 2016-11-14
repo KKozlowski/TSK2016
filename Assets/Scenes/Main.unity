@@ -1680,8 +1680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 947761064}
-  animate: 0
-  progress: 0
 --- !u!1 &576600223
 GameObject:
   m_ObjectHideFlags: 0

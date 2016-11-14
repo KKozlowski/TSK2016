@@ -12,12 +12,14 @@ class Numeric
         else        func = (x => function(x, val));
     }
 
-    public double FindZero(double a, double b)
+    public double FindZero(double a, double b, int recurences = 100)
     {
         fa = func(a);
         f0 = a - fa * (a - b) / (fa - func(b));
         if (double.IsNaN(f0))
             throw new InvalidOperationException("Brak miejsca zerowego");
-        return (Math.Abs(func(f0)) < eps) ? f0 : FindZero(f0, a);
+        if (--recurences == 0)
+            return f0;
+        return (Math.Abs(func(f0)) < eps) ? f0 : FindZero(f0, a, recurences);
     }
 }

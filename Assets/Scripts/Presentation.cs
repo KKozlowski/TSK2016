@@ -19,6 +19,8 @@ public class Presentation : MonoBehaviour
     {
         if (!wasInit)
             return;
+        if (results.x.Count < 2)
+            return;
 
 	    animate = Ui.Me.progressBar.GetAutoAnimation();
 	    if (animate)

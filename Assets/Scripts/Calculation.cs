@@ -52,32 +52,51 @@ class Calculation
 
         // get x1
         numeric.InitNewFunction(equations.P1x, t1, true);
-        x1 = numeric.FindZero(x0, x2 + 1.0f);
+        x1 = numeric.FindZero(x0, 100);
+        
+        if (x0 > x2 || t0 > t1)
+            return;
+
+        // if bullet exits hole before first phase ends
+        if (x1 > x2)
+        {
+            // find time of exit (t1)
+            x1 = x2;
+            numeric.InitNewFunction(equations.P1x, x1, false);
+            t1 = numeric.FindZero(t0 + 0.000000001d, t1);
+            firstPhaseSteps = totalSteps;
+            secondPhaseSteps = 0;
+            dt = (t1 - t0) / totalSteps;
+        }
+        else
+        {
+            // find time of exit (t2)
+            equations.Init(x0, x1, t0, t1, C1, C2, C3, m); // send calculated x1 to calculations
+            numeric.InitNewFunction(equations.P2x, x2, false);
+            t2 = numeric.FindZero(t1, 1);
+            firstPhaseSteps = (int)((t1 - t0) / (t2 - t0) * totalSteps);
+            secondPhaseSteps = totalSteps - firstPhaseSteps;
+            dt = (t2 - t0) / totalSteps;
+        }
 
         equations.Init(x0, x1, t0, t1, C1, C2, C3, m);
-
-        // get t2
-        numeric.InitNewFunction(equations.P2x, x2, false);
-        t2 = numeric.FindZero(t1, 1.0d);
-
-        equations.Init(x0, x1, t0, t1, C1, C2, C3, m);
-
-        firstPhaseSteps = (int)((t1 - t0) / (t2 - t0) * totalSteps);
-        secondPhaseSteps = totalSteps - firstPhaseSteps;
-        dt = (t2 - t0) / totalSteps;
     }
 
     public void Calculate()
     {
+        if (x0 > x2 || t0 > t1)
+            return;
+
         // get results for first phase
         for (int i = 0; i < firstPhaseSteps; ++i)
         {
             t = t0 + i * dt;
             numeric.InitNewFunction(equations.P1x, t, true);
-            
+
             x = numeric.FindZero(0.001d, 100d);
             v = equations.P1v(t, x);
             F = equations.P1F(t, x);
+            t = t0 + i * dt;
             a = equations.P1a(t, x);
             n = Vsp * t;
             P = (n * R * T) / (x * Sn);
@@ -86,7 +105,7 @@ class Calculation
         }
 
         // get results for second phase
-        for (int i = 0; i <= secondPhaseSteps; ++i)
+        for (int i = 0; i < secondPhaseSteps; ++i)
         {
             t = t0 + (firstPhaseSteps + i) * dt;
             numeric.InitNewFunction(equations.P2x, t, true);

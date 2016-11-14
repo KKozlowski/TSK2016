@@ -1454,6 +1454,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 551307747}
   - 114: {fileID: 551307746}
+  - 114: {fileID: 551307748}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -1496,6 +1497,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &551307748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551307745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21aba295f4ae7f24c8a620dfa6a32f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 947761064}
 --- !u!1 &576600223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2876,7 +2889,7 @@ MonoBehaviour:
   slideTopOther: {fileID: 1528843653}
   _cartridge: {fileID: 1134269275}
   Progress: 0
-  PingPong: 1
+  PingPong: 0
 --- !u!1001 &1148544830
 Prefab:
   m_ObjectHideFlags: 0

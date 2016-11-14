@@ -14,7 +14,7 @@ public class Simulation : MonoBehaviour
             _pow = value;
 
             if (wasInit)
-                calculation.Init(Cartridge, Lock, Powder, 1000);
+                Init();
         }
     }
 
@@ -29,7 +29,7 @@ public class Simulation : MonoBehaviour
             _cart = value;
 
             if (wasInit)
-                calculation.Init(Cartridge, Lock, Powder, 1000);
+                Init();
         }
     }
 
@@ -42,7 +42,7 @@ public class Simulation : MonoBehaviour
             _lock = value;
 
             if (wasInit)
-                calculation.Init(Cartridge, Lock, Powder, 1000);
+                Init();
         }
     }
 
@@ -64,13 +64,18 @@ public class Simulation : MonoBehaviour
         Powder = possiblePowders[0];
         Cartridge = possibleCartridges[0];
         Lock = possibleLocks[0];
-        calculation = new Calculation();
-        calculation.Init(Cartridge, Lock, Powder, 200);
+        Init();
         wasInit = true;
+    }
+
+    void Init()
+    {
+        calculation = new Calculation();
+        calculation.Init(Cartridge, Lock, Powder, 100);
         calculation.Calculate();
 
         presentation = GetComponent<Presentation>();
-        presentation.Init(calculation.GetResults(), 1f);
+        presentation.Init(calculation.GetResults(), 4f);
         presentation.SetAnimating(true);
     }
 }

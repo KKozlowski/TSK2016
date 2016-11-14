@@ -21,6 +21,8 @@ public class Presentation : MonoBehaviour
             return;
         if (animate)
             progress = (progress + Time.deltaTime / animTime) % 1.0f;
+        if (results.x.Count < 2)
+            return;
 
         interpolation = progress * samples;
         x = (int)interpolation;

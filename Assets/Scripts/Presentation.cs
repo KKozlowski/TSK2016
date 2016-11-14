@@ -34,6 +34,11 @@ public class Presentation : MonoBehaviour
 	    }
 
 	    Pistol.Me.Progress = Mathf.Clamp((progress - 0.2f)/0.4f,0,2);
+	    float unboundProgress = Ui.Me.progressBar.GetUnboundProgress();
+        if (unboundProgress < 0)
+            Pistol.Me.Striker.SetInProgress(1 - (unboundProgress / (-0.2f)));
+        else
+            Pistol.Me.Striker.SetOutProgress(unboundProgress / 2);
 
         Interpolation = progress * samples;
         x = (int)Interpolation;

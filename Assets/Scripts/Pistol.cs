@@ -29,6 +29,9 @@ public class Pistol : MonoBehaviour {
     private Cartridge _cartridge;
     public Cartridge Cartridge { get { return _cartridge; } }
 
+    [SerializeField] private Striker _striker;
+    public Striker Striker { get { return _striker; } }
+
     public float Progress = 0;
 
     public const float Scale = 50;

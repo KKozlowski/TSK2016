@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: One
   m_EditorClassIdentifier: 
   title: Some powder
-  timeOfBurning: 0.001
+  timeOfBurning: 0.0001
   temperatureOfBuring: 2500
-  molesOfGasFromKilogram: 15
+  molesPerKilo: 60
+  mass: 0.01

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 class Calculation
 {
@@ -6,14 +7,14 @@ class Calculation
     Numeric numeric;
     Results results;
 
-    const double R = 1.0d;
-    const double P2 = 1.0d;
+    const double R = 8.3144598d; // J / (K * mol)
+    const double P2 = 101325d; //pa 
 
     // known variables
     double T, m, n1, Vsp, Sn;
 
     // helper constants
-    double C1, C2, C3, C4, x0, x1, x2, t0, t1, t2, dt;
+    double C1, C2, C3, x0, x1, x2, t0, t1, t2, dt;
     int firstPhaseSteps, secondPhaseSteps, totalSteps;
 
     // helper variables
@@ -35,8 +36,8 @@ class Calculation
         x0 = cartridge.lengthOfCasing;
         x2 = locki.lengthOfBarrel;
 
-        t0 = (P2 * Sn * x0) / (Vsp * R * T);
-        t1 = Vsp / n1;
+        t0 = (P2 * x0 * Sn) / (Vsp * R * T);
+        t1 = powder.timeOfBurning;
 
         // calculate C1 = RTVsp/2m
         C1 = (R * T * Vsp) / (2 * m);
@@ -46,23 +47,24 @@ class Calculation
 
         // calculate C3 = nRT/m
         C3 = (n1 * R * T) / m;
-
-        // calculate C4 = RTVsp
-        C4 = R * T * Vsp;
         
+        equations.Init(x0, x1, t0, t1, C1, C2, C3, m);
+
         // get x1
         numeric.InitNewFunction(equations.P1x, t1, true);
         x1 = numeric.FindZero(x0, x2 + 1.0f);
 
+        equations.Init(x0, x1, t0, t1, C1, C2, C3, m);
+
         // get t2
-        numeric.InitNewFunction(equations.P2t, x2, false);
+        numeric.InitNewFunction(equations.P2x, x2, false);
         t2 = numeric.FindZero(t1, 1.0d);
+
+        equations.Init(x0, x1, t0, t1, C1, C2, C3, m);
 
         firstPhaseSteps = (int)((t1 - t0) / (t2 - t0) * totalSteps);
         secondPhaseSteps = totalSteps - firstPhaseSteps;
         dt = (t2 - t0) / totalSteps;
-        
-        equations.Init(x0, x1, t0, t1, C1, C2, C3, C4);
     }
 
     public void Calculate()
@@ -70,10 +72,10 @@ class Calculation
         // get results for first phase
         for (int i = 0; i < firstPhaseSteps; ++i)
         {
-            t = i * dt;
+            t = t0 + i * dt;
             numeric.InitNewFunction(equations.P1x, t, true);
-            x = numeric.FindZero(x0, x1 + 1.0f);
-
+            
+            x = numeric.FindZero(0.001d, 100d);
             v = equations.P1v(t, x);
             F = equations.P1F(t, x);
             a = equations.P1a(t, x);
@@ -84,15 +86,15 @@ class Calculation
         }
 
         // get results for second phase
-        for (int i = 0; i < secondPhaseSteps; ++i)
+        for (int i = 0; i <= secondPhaseSteps; ++i)
         {
-            x = x1 + (x2 - x1) * (secondPhaseSteps / totalSteps);
-            numeric.InitNewFunction(equations.P2t, x, false);
+            t = t0 + (firstPhaseSteps + i) * dt;
+            numeric.InitNewFunction(equations.P2x, t, true);
 
-            t = numeric.FindZero(t1, t2 + 0.1d);
-            v = equations.P1v(t, x);
-            F = equations.P1F(t, x);
-            a = equations.P1a(t, x);
+            x = numeric.FindZero(0.001d, 100d);
+            v = equations.P2v(t, x);
+            F = equations.P2F(t, x);
+            a = equations.P2a(t, x);
             n = n1;
             P = (n * R * T) / (x * Sn);
 
@@ -108,7 +110,7 @@ class Calculation
     void AddResults()
     {
         results.t.Add(t);
-        results.t.Add(x);
+        results.x.Add(x);
         results.v.Add(v);
         results.F.Add(F);
         results.a.Add(a);

@@ -11,8 +11,14 @@
 // P - barrel presure
 // n - moles of gas
 
-struct Results
+public class Results
 {
     public double dt, t0;
-    public List<double> t, x, v, a, F, P, n;
+    public List<double> t = new List<double>();
+    public List<double> x = new List<double>();
+    public List<double> v = new List<double>();
+    public List<double> a = new List<double>();
+    public List<double> F = new List<double>();
+    public List<double> P = new List<double>();
+    public List<double> n = new List<double>();
 }

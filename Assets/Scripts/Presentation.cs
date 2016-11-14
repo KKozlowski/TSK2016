@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Presentation : MonoBehaviour
 {
-    Results results;
+    public Results Results { get; private set; }
     [SerializeField] Bullet bullet;
 
     bool wasInit;
@@ -12,14 +12,14 @@ public class Presentation : MonoBehaviour
 
     // helpers
     public float progress;
-    float interpolation;
+    public float Interpolation { get; private set; }
     int samples, x, y;
 
 	void Update ()
     {
         if (!wasInit)
             return;
-        if (results.x.Count < 2)
+        if (Results.x.Count < 2)
             return;
 
 	    animate = Ui.Me.progressBar.GetAutoAnimation();
@@ -35,21 +35,21 @@ public class Presentation : MonoBehaviour
 
 	    Pistol.Me.Progress = Mathf.Clamp((progress - 0.2f)/0.4f,0,2);
 
-        interpolation = progress * samples;
-        x = (int)interpolation;
+        Interpolation = progress * samples;
+        x = (int)Interpolation;
         y = x + 1;
-        interpolation %= 1.0f;
+        float interpolation = Interpolation % 1.0f;
 
         if (y == samples) return;
         double[] ds = new double[100];
         for (int i = 1; i < 100; ++i)
-            ds[i - 1] = results.x[i] - results.x[i - 1];
-        bullet.SetPosition(Mathf.Lerp((float)results.x[x], (float)results.x[y], interpolation));
+            ds[i - 1] = Results.x[i] - Results.x[i - 1];
+        bullet.SetPosition(Mathf.Lerp((float)Results.x[x], (float)Results.x[y], interpolation));
 	}
 
     public void Init(Results results, float animTime = 10)
     {
-        this.results = results;
+        this.Results = results;
         this.animTime = animTime;
         progress = 0;
         samples = results.t.Count;

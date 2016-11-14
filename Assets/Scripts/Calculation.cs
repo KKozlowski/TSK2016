@@ -80,6 +80,8 @@ class Calculation
         }
 
         equations.Init(x0, x1, t0, t1, C1, C2, C3, m);
+
+        Debug.Log(t0);
     }
 
     public void Calculate()

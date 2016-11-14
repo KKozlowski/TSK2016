@@ -51,7 +51,7 @@ public class Simulation : MonoBehaviour
     public List<LockInfo> possibleLocks;
 
     Calculation calculation;
-    Presentation presentation;
+    public Presentation Presentation { get; private set; }
     bool wasInit;
 
     void Awake()
@@ -74,8 +74,8 @@ public class Simulation : MonoBehaviour
         calculation.Init(Cartridge, Lock, Powder, 100);
         calculation.Calculate();
 
-        presentation = GetComponent<Presentation>();
-        presentation.Init(calculation.GetResults(), 4f);
-        presentation.SetAnimating(true);
+        Presentation = GetComponent<Presentation>();
+        Presentation.Init(calculation.GetResults(), 4f);
+        Presentation.SetAnimating(true);
     }
 }

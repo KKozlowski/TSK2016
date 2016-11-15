@@ -8,10 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a726ac116182a48418bb333910651e8c, type: 3}
-  m_Name: Three
+  m_Script: {fileID: 11500000, guid: b39f732bef699de4d8a8ed4180ef11f6, type: 3}
+  m_Name: Four
   m_EditorClassIdentifier: 
-  title: Commodore
-  diameterOfBullet: 0.005
-  massOfBullet: 0.005
-  lengthOfCasing: 0.03
+  title: Steady
+  lengthOfBarrel: 0.15
+  inclinationMax: 0
+  elasticityOfRecoilSpring: 500

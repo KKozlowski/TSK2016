@@ -19,6 +19,7 @@ public class StatBar : MonoBehaviour
 
         double t = Lerp(r.t[one], r.t[two], interpolation);
         double x = Lerp(r.x[one], r.x[two], interpolation);
+        double v = Lerp(r.v[one], r.v[two], interpolation);
         double a = Lerp(r.a[one], r.a[two], interpolation);
         double P = Lerp(r.P[one], r.P[two], interpolation);
 
@@ -26,7 +27,8 @@ public class StatBar : MonoBehaviour
         field.text =
 	        "<b>t:</b>   " + t.ToString("F8") + " s"
 	        + "\n<b>x:</b>   " + x.ToString("F8") + " m"
-	        + "\n<b>a:</b>   " + a.ToString("F4") + " m/s²"
+            + "\n<b>v:</b>   " + v.ToString("F8") + " m/s"
+            + "\n<b>a:</b>   " + a.ToString("F4") + " m/s²"
             + "\n<b>P:</b>   " + P.ToString("F4") + " W";
     }
 

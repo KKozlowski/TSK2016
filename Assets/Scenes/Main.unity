@@ -1802,6 +1802,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 947761064}
   animate: 0
+  strikerProgress: 0
+  bulletProgress: 0
+  sliderProgress: 0
   progress: 0
 --- !u!1 &576600223
 GameObject:
@@ -7345,7 +7348,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1504871462}
   m_HandleRect: {fileID: 1740662363}
   m_Direction: 0
-  m_MinValue: -0.2
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0

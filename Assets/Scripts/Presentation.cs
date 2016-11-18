@@ -9,6 +9,13 @@ public class Presentation : MonoBehaviour
     bool wasInit;
     public bool animate;
     float animTime;
+    float strikerPart = 0.1f;
+    float bulletPart = 0.5f;
+    float sliderPart = 0.9f;
+
+    public float strikerProgress;
+    public float bulletProgress;
+    public float sliderProgress;
 
     // helpers
     public float progress;
@@ -33,23 +40,38 @@ public class Presentation : MonoBehaviour
 	        progress = Ui.Me.progressBar.GetProgress();
 	    }
 
-	    Pistol.Me.Progress = Mathf.Clamp((progress - 0.2f)/0.4f,0,2);
-	    float unboundProgress = Ui.Me.progressBar.GetUnboundProgress();
-        if (unboundProgress < 0)
-            Pistol.Me.Striker.SetInProgress(1 - (unboundProgress / (-0.2f)));
+        strikerProgress = Mathf.Lerp(0, 1, progress / (strikerPart));
+        bulletProgress = Mathf.LerpUnclamped(0, 1, (progress - strikerPart) / bulletPart);
+        sliderProgress = Mathf.Lerp(0, 1, (progress - strikerPart) / sliderPart);
+
+        if (bulletProgress < 0.0f)
+            bulletProgress = 0.0f;
+
+        if (strikerProgress == 1 && progress >= 0.55f)
+        {
+            strikerProgress = 4 * (sliderProgress - sliderProgress * sliderProgress);
+        }
+
+        Pistol.Me.Striker.SetOutProgress(strikerProgress);
+        Pistol.Me.Progress = 4*(sliderProgress- sliderProgress * sliderProgress);
+
+        if (bulletProgress <= 1.0f)
+        {
+            Interpolation = bulletProgress * samples;
+            x = (int)Interpolation;
+            y = x + 1;
+            Interpolation = Interpolation % 1.0f;
+            if (y == samples) y = x;
+            bullet.SetPosition(Mathf.Lerp((float)Results.x[x], (float)Results.x[y], Interpolation));
+        }
         else
-            Pistol.Me.Striker.SetOutProgress(unboundProgress / 2);
-
-        Interpolation = progress * samples;
-        x = (int)Interpolation;
-        y = x + 1;
-        float interpolation = Interpolation % 1.0f;
-
-        if (y == samples) return;
-        double[] ds = new double[100];
-        for (int i = 1; i < 100; ++i)
-            ds[i - 1] = Results.x[i] - Results.x[i - 1];
-        bullet.SetPosition(Mathf.Lerp((float)Results.x[x], (float)Results.x[y], interpolation));
+        {
+            x = Results.x.Count - 2;
+            y = Results.x.Count - 1;
+            double diff = Results.x[y] - Results.x[x];
+            Interpolation = (bulletProgress - 1.0f) * samples;
+            bullet.SetPosition(Results.x[Results.x.Count - 1] + diff * Interpolation);
+        }
 	}
 
     public void Init(Results results, float animTime = 10)

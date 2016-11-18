@@ -6,23 +6,45 @@ public class StatBar : MonoBehaviour
 {
     [SerializeField] private Text field;
 
-	void Update ()
-	{
-        int one = (int)Simulation.Me.Presentation.Interpolation;
-        int two = one + 1;
-        double interpolation = Simulation.Me.Presentation.Interpolation % 1;
+    float progress;
+    float interpolation;
+    double t, x, v, a, P;
+    int A, B;
 
-	    Results r = Simulation.Me.Presentation.Results;
-	    if (two == r.x.Count)
-	        two = one;
-	    
+    void Update ()
+    {
+        Results r = Simulation.Me.Presentation.Results;
+        progress = Simulation.Me.Presentation.bulletProgress;
 
-        double t = Lerp(r.t[one], r.t[two], interpolation);
-        double x = Lerp(r.x[one], r.x[two], interpolation);
-        double v = Lerp(r.v[one], r.v[two], interpolation);
-        double a = Lerp(r.a[one], r.a[two], interpolation);
-        double P = Lerp(r.P[one], r.P[two], interpolation);
+        interpolation = progress * r.x.Count;
+        A = (int)interpolation;
+        B = A + 1;
 
+        if (B < r.x.Count) // inteprolate
+        {
+            interpolation %= 1;
+            x = Lerp(r.x[A], r.x[B], interpolation);
+            a = Lerp(r.a[A], r.a[B], interpolation);
+            P = Lerp(r.P[A], r.P[B], interpolation);
+            v = Lerp(r.v[A], r.v[B], interpolation);
+        }
+        else // extrapolate
+        {
+            double diff = r.x[r.x.Count - 2] - r.x[r.x.Count - 1];
+            interpolation = (progress - 1.0f) * (r.x.Count);
+            interpolation += 1;
+
+            x = r.x[r.x.Count - 1] + interpolation * diff;
+            a = 0;
+            P = 0;
+            v = r.v[r.x.Count - 1];
+        }
+
+        A = (int)Mathf.Clamp(interpolation, 0, r.x.Count-2);
+        B = A + 1;
+
+        t = Lerp(r.t[A], r.t[B], interpolation);
+        
 
         field.text =
 	        "<b>t:</b>   " + t.ToString("F8") + " s"

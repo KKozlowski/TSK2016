@@ -89,6 +89,11 @@ class Calculation
         if (x0 > x2 || t0 > t1)
             return;
 
+        results.dt = dt;
+        results.t0 = t0;
+        results.t1 = t1;
+        results.t2 = t2;
+
         // get results for first phase
         for (int i = 0; i < firstPhaseSteps; ++i)
         {

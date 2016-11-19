@@ -13,7 +13,7 @@
 
 public class Results
 {
-    public double dt, t0;
+    public double dt, t0, t1, t2;
     public List<double> t = new List<double>();
     public List<double> x = new List<double>();
     public List<double> v = new List<double>();

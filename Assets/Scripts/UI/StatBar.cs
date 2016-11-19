@@ -8,7 +8,7 @@ public class StatBar : MonoBehaviour
 
     float progress;
     float interpolation;
-    double t, x, v, a, P;
+    double t, x, v, a, P, F;
     int A, B;
 
     void Update ()
@@ -27,31 +27,31 @@ public class StatBar : MonoBehaviour
             a = Lerp(r.a[A], r.a[B], interpolation);
             P = Lerp(r.P[A], r.P[B], interpolation);
             v = Lerp(r.v[A], r.v[B], interpolation);
+            F = Lerp(r.F[A], r.F[B], interpolation);
+            t = Lerp(r.t[A], r.t[B], interpolation);
         }
         else // extrapolate
         {
-            double diff = r.x[r.x.Count - 2] - r.x[r.x.Count - 1];
+            double diff = r.x[r.x.Count - 1] - r.x[r.x.Count - 2];
             interpolation = (progress - 1.0f) * (r.x.Count);
             interpolation += 1;
 
             x = r.x[r.x.Count - 1] + interpolation * diff;
+            diff = r.t[r.t.Count - 1] - r.t[r.t.Count - 2];
+            t = r.t[r.t.Count - 1] + interpolation * diff;
             a = 0;
             P = 0;
             v = r.v[r.x.Count - 1];
-        }
-
-        A = (int)Mathf.Clamp(interpolation, 0, r.x.Count-2);
-        B = A + 1;
-
-        t = Lerp(r.t[A], r.t[B], interpolation);
-        
+            F = 0;
+        }        
 
         field.text =
-	        "<b>t:</b>   " + t.ToString("F8") + " s"
-	        + "\n<b>x:</b>   " + x.ToString("F8") + " m"
-            + "\n<b>v:</b>   " + v.ToString("F8") + " m/s"
+	        "<b>t:</b>   " + (t * 1000).ToString("F4") + " ms"
+	        + "\n<b>x:</b>   " + x.ToString("F4") + " m"
+            + "\n<b>v:</b>   " + v.ToString("F4") + " m/s"
             + "\n<b>a:</b>   " + a.ToString("F4") + " m/s²"
-            + "\n<b>P:</b>   " + P.ToString("F4") + " W";
+            + "\n<b>P:</b>   " + (P * 0.00001d).ToString("F4") + " bar"
+            + "\n<b>F:</b>   " + (F * 0.001d).ToString("F4") + " kN";
     }
 
     double Lerp(double first, double second, double progress)

@@ -123,8 +123,8 @@ public class Pistol : MonoBehaviour {
 
         
 
-        SetBarrelLength(0.115);
-        SetInclination(0.05);
+        //SetBarrelLength(0.115);
+        //SetInclination(0.05);
         
     }
 

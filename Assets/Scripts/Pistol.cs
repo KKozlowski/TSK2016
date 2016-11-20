@@ -23,7 +23,7 @@ public class Pistol : MonoBehaviour {
 
     public Transform strikerMainTransform, strikerZeroPosition;
 
-    public Transform slideBack, slideZeroPosition, slideTopOverBarrel, slideTopOther;
+    public Transform slideBack, slideBackBack, slideZeroPosition, slideTopOverBarrel, slideTopOther;
 
     [SerializeField]
     private Cartridge _cartridge;
@@ -48,6 +48,8 @@ public class Pistol : MonoBehaviour {
         BarrelLength = l;
         l *= Scale;
         barrelInnerTransform.localScale = new Vector3(l, barrelInnerTransform.localScale.y, barrelInnerTransform.localScale.z);
+        slideTopOverBarrel.localScale = new Vector3(l - 1.58f, slideTopOverBarrel.localScale.y, slideTopOverBarrel.localScale.z);
+        slideBackBack.localScale = new Vector3(l + 4.16f, slideBackBack.localScale.y, slideBackBack.localScale.z);
     }
 
     public void SetBarrelDiameter(double d)

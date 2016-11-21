@@ -22,7 +22,7 @@ public class GraphUI : MonoBehaviour
 
     void Start()
     {
-        UpdateGraph();
+        StartCoroutine(UpdateEverySecond());
     }
 
     public void UpdateGraph()
@@ -77,5 +77,14 @@ public class GraphUI : MonoBehaviour
 
         line.SetVertexCount(data.Count);
         line.SetPositions(positions);
+    }
+
+    IEnumerator UpdateEverySecond()
+    {
+        while (true)
+        {
+            UpdateGraph();
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

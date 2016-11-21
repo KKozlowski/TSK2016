@@ -72,7 +72,7 @@ public class Simulation : MonoBehaviour
     void Init()
     {
         calculation = new Calculation();
-        calculation.Init(Cartridge, Lock, Powder, 100);
+        calculation.Init(Cartridge, Lock, Powder, 1000);
         calculation.Calculate();
 
         Presentation = GetComponent<Presentation>();

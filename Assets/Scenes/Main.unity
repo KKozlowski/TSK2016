@@ -2221,8 +2221,9 @@ MonoBehaviour:
   possiblePowders:
   - {fileID: 11400000, guid: 4a72fee74867d1d4990d5a74195387c5, type: 2}
   - {fileID: 11400000, guid: 3b0a9658010fce14c84e5ec452055b3c, type: 2}
-  - {fileID: 11400000, guid: 1de2ddeee2e2c4841866dfd8c2ff4687, type: 2}
+  - {fileID: 11400000, guid: d08d05c2bbdeb784e983dfa34f50539e, type: 2}
   - {fileID: 11400000, guid: de4515f90f9ee9d4ab34ebb3b52b3928, type: 2}
+  - {fileID: 11400000, guid: 1de2ddeee2e2c4841866dfd8c2ff4687, type: 2}
   possibleCartridges:
   - {fileID: 11400000, guid: bf801925c6aa5f640885532081beb463, type: 2}
   - {fileID: 11400000, guid: 95377b415ff3f1f4089ccfed73713b4b, type: 2}

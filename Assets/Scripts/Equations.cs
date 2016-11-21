@@ -1,4 +1,6 @@
-﻿class Equations
+﻿using System;
+
+class Equations
 {
     double x0, x1, t0, t1, v1, C1, C2, C3, m;
 
@@ -24,7 +26,7 @@
     // used to calculate v(t) and v1 in first phase
     public double P1v(double t, double x)
     {
-        return C1*(t*t - t0*t0)/x - C2*(t-t0);
+        return Math.E*C1*(t*t - t0*t0)/x - C2*(t-t0);
     }
 
     // used to calculate F(t) in first phase
@@ -42,7 +44,7 @@
     // used to calculate x(t) and t2 in second phase
     public double P2x(double t, double x)
     {
-        return  (t-t1)*(t-t1)*(C3/x - C2) + x1 - x + v1*(t-t1) * 2f;
+        return  (t-t1)*(t-t1)*(C3/x - C2) + x1 - x + v1*(t-t1)*2f/Math.E;
     }
 
     // used to calculate v(t) in second phase

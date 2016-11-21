@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f54847d727b649b4d97b92dc9afdf4df, type: 3}
-  m_Name: One
+  m_Name: Three
   m_EditorClassIdentifier: 
-  title: low quality
-  timeOfBurning: 0.001
-  temperatureOfBuring: 2000
-  molesPerKilo: 20
+  title: goodQuality
+  timeOfBurning: 0.0002
+  temperatureOfBuring: 3000
+  molesPerKilo: 50

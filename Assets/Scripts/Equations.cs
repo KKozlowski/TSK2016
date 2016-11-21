@@ -42,7 +42,7 @@
     // used to calculate x(t) and t2 in second phase
     public double P2x(double t, double x)
     {
-        return  (t-t1)*(t-t1)*(C3/x - C2) + x1 - x + v1*(t-t1);
+        return  (t-t1)*(t-t1)*(C3/x - C2) + x1 - x + v1*(t-t1) * 2f;
     }
 
     // used to calculate v(t) in second phase

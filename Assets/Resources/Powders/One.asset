@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54847d727b649b4d97b92dc9afdf4df, type: 3}
   m_Name: One
   m_EditorClassIdentifier: 
-  title: Some powder
-  timeOfBurning: 0.0001
-  temperatureOfBuring: 2500
-  molesPerKilo: 120
+  title: Unnamed 1
+  timeOfBurning: 0.0003
+  temperatureOfBuring: 3000
+  molesPerKilo: 60

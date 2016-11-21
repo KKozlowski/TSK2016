@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f54847d727b649b4d97b92dc9afdf4df, type: 3}
-  m_Name: Two
+  m_Name: Chloran
   m_EditorClassIdentifier: 
-  title: Unnamed 2
-  timeOfBurning: 0.0001
-  temperatureOfBuring: 2500
-  molesPerKilo: 120
+  title: Chloran powder
+  timeOfBurning: 0.0003
+  temperatureOfBuring: 3900
+  molesPerKilo: 50

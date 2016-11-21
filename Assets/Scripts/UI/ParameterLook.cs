@@ -17,6 +17,8 @@ public class ParameterLook : MonoBehaviour
 
         titleText.text = info.title;
 
+        parameterTexts[3].gameObject.SetActive(false);
+
         PowderInfo pi = info as PowderInfo;
         if (pi)
         {
@@ -32,6 +34,9 @@ public class ParameterLook : MonoBehaviour
             parameterTexts[0].text = "Bullet diameter: " + ci.diameterOfBullet;
             parameterTexts[1].text = "Bullet mass: " + ci.massOfBullet;
             parameterTexts[2].text = "Casing length: " + ci.lengthOfCasing;
+
+            parameterTexts[3].gameObject.SetActive(true);
+            parameterTexts[3].text = "Mass of powder: " + ci.massOfPowder;
             return;
         }
 

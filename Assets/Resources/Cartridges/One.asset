@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a726ac116182a48418bb333910651e8c, type: 3}
   m_Name: One
   m_EditorClassIdentifier: 
-  title: Amiga
+  title: Unnamed 1
   diameterOfBullet: 0.012
   massOfBullet: 0.01
   lengthOfCasing: 0.022
+  massOfPowder: 0.005

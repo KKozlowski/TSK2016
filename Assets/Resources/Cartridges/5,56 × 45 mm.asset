@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a726ac116182a48418bb333910651e8c, type: 3}
-  m_Name: Two
+  m_Name: "5,56 \xD7 45 mm"
   m_EditorClassIdentifier: 
-  title: Unnamed 2
-  diameterOfBullet: 0.02
-  massOfBullet: 0.1
-  lengthOfCasing: 0.05
-  massOfPowder: 0.005
+  title: "5,56 \xD7 45 mm"
+  diameterOfBullet: 0.0057
+  massOfBullet: 0.005
+  lengthOfCasing: 0.0447
+  massOfPowder: 0.00162

@@ -29,7 +29,7 @@ class Calculation
         totalSteps = timeSteps;
         T = powder.temperatureOfBuring;
         m = cartridge.massOfBullet;
-        n1 = powder.molesPerKilo * powder.mass;
+        n1 = powder.molesPerKilo*cartridge.massOfPowder;
         Vsp = n1 / powder.timeOfBurning;
         Sn = cartridge.diameterOfBullet * cartridge.diameterOfBullet * Math.PI;
         

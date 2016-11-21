@@ -18,5 +18,17 @@ public class CameraRig : MonoBehaviour
 	        Vector3 newEuler = startEuler + 0.5f*new Vector3(-mousePositionNow.y + mousePositionStart.y, mousePositionNow.x - mousePositionStart.x, 0);
 	        transform.rotation = Quaternion.Euler(newEuler);
 	    }
-	}
+	    if (Input.mouseScrollDelta.y < 0)
+	    {
+            Camera.main.fieldOfView += Time.deltaTime * 40;
+            //Camera.main.transform.localPosition -= new Vector3(0, 0, Time.deltaTime * 20);
+        }
+	        
+        else if (Input.mouseScrollDelta.y > 0)
+        {
+            Camera.main.fieldOfView -= Time.deltaTime * 40;
+            //Camera.main.transform.localPosition += new Vector3(0, 0, Time.deltaTime * 20);
+        }
+            
+    }
 }

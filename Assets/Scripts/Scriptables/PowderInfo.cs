@@ -6,5 +6,4 @@ public class PowderInfo : InfoBase
     public double timeOfBurning;
     public double temperatureOfBuring;
     public double molesPerKilo;
-    public double mass;
 }

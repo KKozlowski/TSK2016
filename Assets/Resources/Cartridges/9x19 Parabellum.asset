@@ -9,9 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a726ac116182a48418bb333910651e8c, type: 3}
-  m_Name: Four
+  m_Name: 9x19 Parabellum
   m_EditorClassIdentifier: 
-  title: Commodore 64
-  diameterOfBullet: 0.005
-  massOfBullet: 0.1
-  lengthOfCasing: 0.07
+  title: 9x19 Parabellum
+  diameterOfBullet: 0.009
+  massOfBullet: 0.00745
+  lengthOfCasing: 0.019
+  massOfPowder: 0.00036

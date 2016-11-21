@@ -30,6 +30,6 @@ public class ProgressBar : MonoBehaviour
 
     void Update()
     {
-        lastTimeText.text = Simulation.Me.Presentation.Results.t.Last().ToString("F8");
+        lastTimeText.text = (Simulation.Me.Presentation.Results.t.Last()*1000).ToString("F5")+ " ms";
     }
 }

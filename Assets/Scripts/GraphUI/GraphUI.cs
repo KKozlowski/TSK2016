@@ -45,7 +45,7 @@ public class GraphUI : MonoBehaviour
                 SetLine(Source.F);
                 break;
             case 'P':
-                YTitle.text = "Pressure [bar]";
+                YTitle.text = "Pressure [Pa]";
                 SetLine(Source.P);
                 break;
             default:

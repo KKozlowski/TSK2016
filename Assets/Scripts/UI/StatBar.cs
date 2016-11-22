@@ -43,15 +43,16 @@ public class StatBar : MonoBehaviour
             P = 0;
             v = r.v[r.x.Count - 1];
             F = 0;
-        }        
+        }
 
         field.text =
-	        "<b>t:</b>   " + (t * 1000).ToString("F4") + " ms"
-	        + "\n<b>x:</b>   " + x.ToString("F4") + " m"
+            "<b>t:</b>   " + (t*1000).ToString("F4") + " ms"
+            + "\n<b>x:</b>   " + x.ToString("F4") + " m"
             + "\n<b>v:</b>   " + v.ToString("F4") + " m/s"
             + "\n<b>a:</b>   " + a.ToString("F4") + " m/s²"
-            + "\n<b>P:</b>   " + (P * 0.00001d).ToString("F4") + " bar"
-            + "\n<b>F:</b>   " + (F * 0.001d).ToString("F4") + " kN";
+            + "\n<b>P:</b>   " + (P*0.00001d).ToString("F4") + " bar"
+            + "\n<b>F:</b>   " + (F*0.001d).ToString("F4") + " kN"
+            + "\n<b>t1:</b>   " + (r.t1*1000).ToString("F4") + " ms";
     }
 
     double Lerp(double first, double second, double progress)

@@ -776,21 +776,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224000011455663178, guid: ba71e1cd2ea82534faaac64a0f1620d6,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011455663178, guid: ba71e1cd2ea82534faaac64a0f1620d6,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011455663178, guid: ba71e1cd2ea82534faaac64a0f1620d6,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 127.81701
-      objectReference: {fileID: 0}
     - target: {fileID: 1000011227991554, guid: ba71e1cd2ea82534faaac64a0f1620d6, type: 2}
       propertyPath: m_Name
       value: GraphCanvasV
@@ -1177,7 +1162,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 33
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -4012,6 +3997,7 @@ GameObject:
   - 114: {fileID: 1137895768}
   - 114: {fileID: 1137895767}
   - 114: {fileID: 1137895766}
+  - 225: {fileID: 1137895771}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4109,6 +4095,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1137895771
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1137895765}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1147937427
 GameObject:
   m_ObjectHideFlags: 0

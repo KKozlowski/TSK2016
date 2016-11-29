@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a726ac116182a48418bb333910651e8c, type: 3}
   m_Name: Two
   m_EditorClassIdentifier: 
-  title: Unnamed 2
+  title: Czopek
   diameterOfBullet: 0.02
   massOfBullet: 0.1
   lengthOfCasing: 0.05
